@@ -12,4 +12,4 @@ docker image ls
 
 # Step 3: 
 # Run flask app
-docker run -p 8090:80 nginx-hello
+docker run -p 8090:80 -d nginx-hello
