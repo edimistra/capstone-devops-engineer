@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: green-controller
-        image: 678583983523.dkr.ecr.us-west-2.amazonaws.com/nginx-hello
+        image: 678583983523.dkr.ecr.us-west-2.amazonaws.com/nginx-hello:latest
         ports:
         - containerPort: 80
