@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: nginx-hello
-        image: edimistra/nginx-hello:latest
+        image: 678583983523.dkr.ecr.us-west-2.amazonaws.com/nginx-hello:latest
         ports:
         - containerPort: 80

@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   name: green-controller
+  namespace: default
   labels:
     app: green-controller
 spec:
