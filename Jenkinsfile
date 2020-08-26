@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage('Lint HTML') {
+			steps {
+				sh 'tidy -q -e ./nginx-hello/*.html'
+			}
+		}
     stage('Docker Build') {
       steps {
         sh 'docker build -t nginx-hello .'
@@ -9,8 +14,10 @@ pipeline {
     stage('Push Docker Image to AWS ECR') {
       steps {
         withDockerRegistry([url: 'https://678583983523.dkr.ecr.us-west-2.amazonaws.com', credentialsId: 'ecr:us-west-2:jenkins']) {
-        sh 'docker tag nginx-hello:latest 678583983523.dkr.ecr.us-west-2.amazonaws.com/nginx-hello:latest'
-        sh 'docker push 678583983523.dkr.ecr.us-west-2.amazonaws.com/nginx-hello:latest'
+        sh '''
+          docker tag nginx-hello:latest 678583983523.dkr.ecr.us-west-2.amazonaws.com/nginx-hello:latest'
+          docker push 678583983523.dkr.ecr.us-west-2.amazonaws.com/nginx-hello:latest
+        '''
         }
       }
     }
