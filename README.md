@@ -70,6 +70,6 @@ Usage:
 
 ## Important notes
 
-* An custom AMI previously built wit Jenkins already installed was used to expedite the delivery of this project. That custom AMI was created by myself during the Module 4
+* A custom AMI previously built with Jenkins already installed was used to expedite the delivery of this project. That custom AMI was created by myself during the Module 4
 * Such image have been manually configured in order to fulfill the requirements of this project, such as setting at least 2 subnets in different AZs in order to create the EKS Cluster, installing kubectl, etc.
 * In order to run this project you will need to provide your own EC2 instance with Jenkins and the tools needed to install EKS
