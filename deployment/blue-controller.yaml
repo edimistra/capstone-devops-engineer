@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ReplicationController
 metadata:
   name: blue-controller
+  namespace: default
   labels:
     app: blue-controller
 spec:
@@ -15,7 +16,7 @@ spec:
         app: blue-controller
     spec:
       containers:
-      - name: blue-controller
+      - name: nginx-hello
         image: edimistra/nginx-hello:latest
         ports:
         - containerPort: 80
