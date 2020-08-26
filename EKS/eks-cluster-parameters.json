@@ -4,7 +4,11 @@
 		"ParameterValue": "sg-019e96f6f99b47776"
 	},
 	{
-		"ParameterKey": "subnetID",
+		"ParameterKey": "subnetID1",
 		"ParameterValue": "subnet-419d4c1c"
+	},
+	{
+		"ParameterKey": "subnetID2",
+		"ParameterValue": "subnet-18e90952"
 	}
 ]

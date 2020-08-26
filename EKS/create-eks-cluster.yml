@@ -5,8 +5,11 @@ Parameters:
     securityGroupID:
         Description: Security Group ID
         Type: String
-    subnetID:
-        Description: Subnet ID
+    subnetID1:
+        Description: Subnet ID 1
+        Type: String
+    subnetID2:
+        Description: Subnet ID 2
         Type: String
 Resources:
   eksClusterRole:
@@ -25,12 +28,14 @@ Resources:
         - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
   eksCluster:
     Type: 'AWS::EKS::Cluster'
+    DependsOn: eksClusterRole
     Properties:
       Name: capstoneCluster
       Version: '1.17'
-      RoleArn: ${eksClusterRole.Arn}
+      RoleArn: !GetAtt eksClusterRole.Arn
       ResourcesVpcConfig:
         SecurityGroupIds:
           - !Ref securityGroupID
         SubnetIds:
-          - !Ref subnetID
+          - !Ref subnetID1
+          - !Ref subnetID2
