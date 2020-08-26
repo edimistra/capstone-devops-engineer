@@ -52,7 +52,7 @@ pipeline {
     stage('Create the service in the cluster, redirect to blue') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'jenkins') {
-					sh 'kubectl apply -f ./service/blue-service.json'
+					sh 'kubectl apply -f ./service/blue-service.yaml'
 				}
 			}
 		}
@@ -64,7 +64,7 @@ pipeline {
     stage('Create the service in the cluster, redirect to green') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'jenkins') {
-					sh 'kubectl apply -f ./service/green-service.json'
+					sh 'kubectl apply -f ./service/green-service.yaml'
 				}
 			}
 		}
