@@ -59,6 +59,7 @@ pipeline {
     stage('Wait for user approval') {
       steps {
         input "Are you sure you want to redirect traffic to the green deployment?"
+      }
     }
     stage('Create the service in the cluster, redirect to green') {
 			steps {
