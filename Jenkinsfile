@@ -28,5 +28,12 @@ pipeline {
 				}
 			}
 		}
+    stage('Set current kubectl context') {
+			steps {
+				withAWS(region:'us-west-2', credentials:'jenkins') {
+					sh 'kubectl config use-context arn:aws:eks:us-west-2:678583983523:cluster/capstoneCluster'
+				}
+			}
+		}
   }
 }
