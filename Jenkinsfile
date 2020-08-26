@@ -15,7 +15,7 @@ pipeline {
       steps {
         withDockerRegistry([url: 'https://678583983523.dkr.ecr.us-west-2.amazonaws.com', credentialsId: 'ecr:us-west-2:jenkins']) {
         sh '''
-          docker tag nginx-hello:latest 678583983523.dkr.ecr.us-west-2.amazonaws.com/nginx-hello:latest'
+          docker tag nginx-hello:latest 678583983523.dkr.ecr.us-west-2.amazonaws.com/nginx-hello:latest
           docker push 678583983523.dkr.ecr.us-west-2.amazonaws.com/nginx-hello:latest
         '''
         }
