@@ -1,0 +1,10 @@
+[
+	{
+		"ParameterKey": "securityGroupID",
+		"ParameterValue": "sg-019e96f6f99b47776"
+	},
+	{
+		"ParameterKey": "subnetID",
+		"ParameterValue": "subnet-419d4c1c"
+	}
+]

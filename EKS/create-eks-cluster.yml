@@ -1,0 +1,36 @@
+Description: >
+    Erick Dimistracopulos
+    Creates a EKS cluster with CloudFormation
+Parameters:
+    securityGroupID:
+        Description: Security Group ID
+        Type: String
+    subnetID:
+        Description: Subnet ID
+        Type: String
+Resources:
+  eksClusterRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - eks.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+  eksCluster:
+    Type: 'AWS::EKS::Cluster'
+    Properties:
+      Name: capstoneCluster
+      Version: '1.17'
+      RoleArn: ${eksClusterRole.Arn}
+      ResourcesVpcConfig:
+        SecurityGroupIds:
+          - !Ref securityGroupID
+        SubnetIds:
+          - !Ref subnetID
