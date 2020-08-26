@@ -11,7 +11,27 @@ Parameters:
     subnetID2:
         Description: Subnet ID 2
         Type: String
+    clusterName:
+        Description: Name of the Cluster
+        Type: String
 Resources:
+  NodeInstanceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: "/"
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+        - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
   eksClusterRole:
     Type: AWS::IAM::Role
     Properties:
@@ -30,7 +50,7 @@ Resources:
     Type: 'AWS::EKS::Cluster'
     DependsOn: eksClusterRole
     Properties:
-      Name: capstoneCluster
+      Name: !Ref clusterName
       Version: '1.17'
       RoleArn: !GetAtt eksClusterRole.Arn
       ResourcesVpcConfig:
@@ -39,3 +59,15 @@ Resources:
         SubnetIds:
           - !Ref subnetID1
           - !Ref subnetID2
+  EKSNodegroup:
+    Type: 'AWS::EKS::Nodegroup'
+    Properties:
+      ClusterName: !Ref clusterName
+      NodeRole: !GetAtt NodeInstanceRole.Arn
+      ScalingConfig:
+        MinSize: 2
+        DesiredSize: 3
+        MaxSize: 5
+      Subnets:
+        - !Ref subnetID1
+        - !Ref subnetID2

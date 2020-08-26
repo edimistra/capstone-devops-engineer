@@ -10,5 +10,9 @@
 	{
 		"ParameterKey": "subnetID2",
 		"ParameterValue": "subnet-18e90952"
+	},
+	{
+		"ParameterKey": "clusterName",
+		"ParameterValue": "capstoneCluster"
 	}
 ]
